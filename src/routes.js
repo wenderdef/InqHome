@@ -16,7 +16,7 @@ export default function Routes() {
             headerShown: false,
             tabBarStyle : 
                 {
-                    backgroundColor: '#28d8ff',
+                    backgroundColor: '#FFFFFF',
                     borderTopColor: 'black',
                     borderTopWidth: 0.3,
                     shadowRadius: 100,
@@ -38,11 +38,11 @@ export default function Routes() {
                             style={{
                                 width: 25,
                                 height: 25,
-                                tintColor: focused ? '#e32f45' : '#747c94'
+                                tintColor: focused ? '#055292' : '#747c94'
                             }}
                             />
                             <Text
-                            style={{color: focused ? '#e32f45' : '#748c94', fontSize: 12}}>
+                            style={{color: focused ? '#055292' : '#748c94', fontSize: 12}}>
                                 HOME
                             </Text>
                         </View>
