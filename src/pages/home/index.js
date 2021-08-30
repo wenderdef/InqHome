@@ -1,9 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, SafeAreaView } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import config from '../../../config/index.json';
+import { Custom, Filtro } from './style';
+
 
 export default function Home() {
 
@@ -17,7 +21,7 @@ export default function Home() {
         let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
         setOrigin({
           latitude: location.coords.latitude,
-          longitude:location.coords.longitude,
+          longitude: location.coords.longitude,
           latitudeDelta: 0.0143,
           longitudeDelta: 0.0134,
         })
@@ -30,6 +34,32 @@ export default function Home() {
 
   return (
     <View>
+
+
+<Filtro>
+
+<GooglePlacesAutocomplete
+  placeholder='Search'
+  onPress={(data, details = null) => {
+   console.log(data, details);
+   
+    setDestination({
+      latitude: details.geometry.location.lat,
+      longitude: details.geometry.location.lng,
+      longitudeDelta: 0.000922,
+      latitudeDelta: 0.000421
+    });
+  }}
+  query={{
+    key: 'AIzaSyDoqzfdMbaLYUfQX2ZJjuoNqVPEkB0Xd5Y',
+    language: 'pt-br',
+  }}
+  enablePoweredByContainer={false}
+  fetchDetails={true}
+  styles={{ listView: { height: 10} }}
+/>
+</Filtro>
+
       <MapView
 
         style={styles.map}
@@ -68,7 +98,6 @@ export default function Home() {
         />
 
       </MapView>
-
     </View>
 
   );
@@ -77,6 +106,11 @@ export default function Home() {
 const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    height: Dimensions.get('window').height, 
+    top: "10%"
   },
+  container:{
+    padding:10,
+    height: "100%",
+  }
 });

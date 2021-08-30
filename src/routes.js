@@ -20,7 +20,7 @@ export default function Routes() {
                     borderTopColor: 'black',
                     borderTopWidth: 0.3,
                     shadowRadius: 100,
-                    height: 55,
+                    height: "9%",
                     
                     
                 }
