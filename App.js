@@ -3,12 +3,37 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Routes from './src/routes';
+import { createStackNavigator } from '@react-navigation/stack';
 
+import Login from './src/pages/login/login';
+
+const Stack = createStackNavigator();
 
 export default function App() {
+  // return (
+  //   <NavigationContainer>
+  //     <Routes />
+  //   </NavigationContainer>
+  // );
   return (
     <NavigationContainer>
-      <Routes />
+      <Stack.Navigator
+      
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerShown: false,
+    }}
+      >
+        <Stack.Screen 
+          name="Login"
+          component={Login}
+        />
+      <Stack.Screen 
+          name="Routes"
+          component={Routes}
+        />
+        
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
